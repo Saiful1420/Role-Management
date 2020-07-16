@@ -31,8 +31,15 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 });
 
 // Todo list.................................
-
-
 Route::resource('/task', 'TaskController');
 
 
+
+// Mobile......................................
+// Route::resource('/mobile', 'Admin\MobileController' , ['expect' => ['show','create', 'store']]);
+Route::get('/mobile', 'Admin\MobileController@index')->name('home');
+Route::get('create', 'Admin\MobileController@create')->name('create');
+Route::post('create', 'Admin\MobileController@store')->name('store');
+Route::get('edit/{id}', 'Admin\MobileController@edit')->name('edit');
+Route::post('update/{id}', 'Admin\MobileController@update')->name('update');
+Route::get('delete/{id}', 'Admin\MobileController@delete')->name('delete');

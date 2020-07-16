@@ -65,6 +65,9 @@
                                     User Management
                                 </a>
                             @endcan
+                            <a class="dropdown-item" href="{{ route('create') }}">
+                                Mobile Management
+                            </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

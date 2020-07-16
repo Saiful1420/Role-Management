@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\Mobile;
 use Gate;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2020 at 06:21 AM
+-- Generation Time: Jul 16, 2020 at 06:02 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -61,7 +61,38 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2020_07_01_112050_create_role-user_table', 2),
 (6, '2020_07_01_133543_create_role_user_table', 3),
 (7, '2020_07_01_135557_create_roles_table', 4),
-(8, '2020_07_01_135749_create_role_user_table', 4);
+(8, '2020_07_01_135749_create_role_user_table', 4),
+(9, '2020_07_09_093210_create_tasks_table', 5),
+(10, '2020_07_15_141959_create_mobiles_table', 6),
+(11, '2020_07_15_145359_create_mobiles_table', 7),
+(12, '2020_07_16_053724_create_mobiles_table', 8),
+(13, '2020_07_16_155855_create_permissions_table', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mobiles`
+--
+
+CREATE TABLE `mobiles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `mobile_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `memory` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `battery` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mobiles`
+--
+
+INSERT INTO `mobiles` (`id`, `mobile_name`, `memory`, `battery`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'Nokia', '4GB 16ROM', '40000mh', '12500', '2020-07-16 00:12:18', '2020-07-16 07:29:15'),
+(3, 'Samaung', '6GB 128ROM', '50000mh', '20000', '2020-07-16 00:16:47', '2020-07-16 00:16:47'),
+(6, 'iphone 6', '3GB 16ROM', '3000mh', '20000', '2020-07-16 04:09:22', '2020-07-16 04:09:22'),
+(10, 'Nokia11', '6GB 128ROM', '40000mh', '20000', '2020-07-16 06:28:05', '2020-07-16 06:29:00');
 
 -- --------------------------------------------------------
 
@@ -73,6 +104,18 @@ CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -125,6 +168,29 @@ INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'this is the first task', '2020-07-15 08:46:24', '2020-07-15 08:46:24'),
+(2, 'My name is saiful', '2020-07-15 08:46:41', '2020-07-15 08:46:41'),
+(3, 'My name is razib', '2020-07-16 00:22:10', '2020-07-16 00:22:10'),
+(4, 'My name is razib', '2020-07-16 00:22:10', '2020-07-16 00:22:10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -166,10 +232,22 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mobiles`
+--
+ALTER TABLE `mobiles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `roles`
@@ -181,6 +259,12 @@ ALTER TABLE `roles`
 -- Indexes for table `role_user`
 --
 ALTER TABLE `role_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -204,7 +288,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `mobiles`
+--
+ALTER TABLE `mobiles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -217,6 +313,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `role_user`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
